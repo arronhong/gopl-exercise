@@ -22,5 +22,8 @@ func TestAnagram(t *testing.T) {
 		if got := anagram(test.a, test.b); got != test.want {
 			t.Errorf("anagram(%s, %s) = %t, want %t", test.a, test.b, got, test.want)
 		}
+		if got := anagram2(test.a, test.b); got != test.want {
+			t.Errorf("anagram2(%s, %s) = %t, want %t", test.a, test.b, got, test.want)
+		}
 	}
 }
