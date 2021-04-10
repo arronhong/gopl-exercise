@@ -16,5 +16,10 @@ func anagram(s1, s2 string) bool {
 	sort.Slice(ss2, func(i, j int) bool {
 		return ss2[i] < ss2[j]
 	})
-	return string(ss1) == string(ss2)
+	for i, r := range ss1 {
+		if r != ss2[i] {
+			return false
+		}
+	}
+	return true
 }
