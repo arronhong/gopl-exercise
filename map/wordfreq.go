@@ -22,6 +22,10 @@ func main() {
 	for scanner.Scan() {
 		counts[scanner.Text()]++
 	}
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintf(os.Stderr, "reading input: %s\n", err)
+		os.Exit(1)
+	}
 	for s, cnt := range counts {
 		fmt.Printf("%s\t%d\n", s, cnt)
 	}
