@@ -1,7 +1,6 @@
 package slice
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -32,10 +31,10 @@ func TestReverseUTF8EncodedBytes(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
+		inStr := string(test.in)
 		ret := ReverseUTF8EncodedBytes(test.in)
-		fmt.Println(string(ret))
 		if string(test.expect) != string(ret) {
-			t.Fatalf("input %s, expect %s. actual %s", test.in, test.expect, ret)
+			t.Fatalf("input %s, expect %s. actual %s", inStr, test.expect, ret)
 		}
 	}
 }

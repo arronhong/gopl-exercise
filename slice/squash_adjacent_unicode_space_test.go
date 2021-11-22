@@ -23,11 +23,10 @@ func TestSquashAdjacentUnicodeSpace(t *testing.T) {
 		},
 	}
 	for _, test := range tests {
+		inStr := string(test.in)
 		ret := SquashAdjacentUnicodeSpace(test.in)
-		actual := string(ret)
-		expect := string(test.expect)
-		if expect != actual {
-			t.Fatalf("input %q, expect %q, actual %q", test.in, test.expect, ret)
+		if string(test.expect) != string(ret) {
+			t.Fatalf("input %q, expect %q, actual %q", inStr, test.expect, ret)
 		}
 	}
 }
