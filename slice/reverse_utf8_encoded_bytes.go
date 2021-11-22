@@ -25,3 +25,23 @@ func ReverseUTF8EncodedBytes(bytes []byte) []byte {
 	}
 	return bytes
 }
+
+func Reverse(bytes []byte) {
+	for i, j := 0, len(bytes)-1; i < j; i, j = i+1, j-1 {
+		bytes[i], bytes[j] = bytes[j], bytes[i]
+	}
+}
+
+func ReverseUTF8EncodedBytes2(bytes []byte) []byte {
+	// use the fact that: input []byte{x1, x2, x3, y1, y2, y3, y4, z1, z2}
+	// if we reverse each runea then reverse whole bytes, we get the expection
+	// after step1 like: []byte{x3, x2, x1, y4, y3, y2, y1, z2, z1}
+	// after step2 like: []byte{z1, z2, y1, y2, y3, y4, x1, x2, x3}
+	for i := 0; i < len(bytes); {
+		_, size := utf8.DecodeRune(bytes[i:])
+		Reverse(bytes[i : i+size])
+		i += size
+	}
+	Reverse(bytes)
+	return bytes
+}
